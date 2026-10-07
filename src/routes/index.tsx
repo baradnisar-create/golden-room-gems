@@ -54,7 +54,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-secondary py-24">
+      <section className="border-y border-gold/30 py-24">
         <div className="mx-auto max-w-7xl px-5">
           <SectionTitle eyebrow="What we stand for" title="Our Resort Values" />
           <div className="grid gap-6 md:grid-cols-3">
