@@ -32,3 +32,21 @@ export const VIDEOS = [
   { id: "HVoaVTCBFMQ", short: true },
   { id: "zV6LUtInjxI", short: true },
 ];
+
+export const VALUES = [
+  {
+    icon: "Medal",
+    title: "Quality",
+    desc: "Floresta Gir has always been well rated for its quality and the service provided for its guest.",
+  },
+  {
+    icon: "Eye",
+    title: "Our Vision",
+    desc: "Floresta Gir has never left a disappointed visitor — everyone has enjoyed its stay.",
+  },
+  {
+    icon: "Trophy",
+    title: "Success",
+    desc: "Quick reservations, friendly staff, clean rooms, and delicious food served.",
+  },
+];
