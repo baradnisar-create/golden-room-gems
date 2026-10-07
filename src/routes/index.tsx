@@ -3,9 +3,12 @@ import hero from "@/assets/hero.jpg";
 import room from "@/assets/room.jpg";
 import safari from "@/assets/safari.jpg";
 import pool from "@/assets/pool.jpg";
-import { ROOMS, whatsappLink } from "@/lib/site";
+import { Medal, Eye, Trophy } from "lucide-react";
+import { ROOMS, VALUES, whatsappLink } from "@/lib/site";
 import { SectionTitle } from "@/components/site/SiteChrome";
 import { FacilityGrid, VideoGrid } from "@/components/site/Facilities";
+
+const VALUE_ICONS = { Medal, Eye, Trophy } as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -48,6 +51,26 @@ function Index() {
           <h2 className="mt-3 text-5xl text-primary">Where the forest meets royalty</h2>
           <p className="mt-6 text-muted-foreground">Nestled in Bhojde village at the edge of Gir National Park, The Floresta Gir blends warm Kathiyawadi hospitality with refined comfort. Wake up to birdsong, set out on a lion safari, and return to a poolside evening and bonfire.</p>
           <Link to="/facilities" className="mt-8 inline-block border-b-2 border-gold pb-1 font-semibold text-primary">Explore facilities →</Link>
+        </div>
+      </section>
+
+      <section className="border-y border-gold/30 py-24">
+        <div className="mx-auto max-w-7xl px-5">
+          <SectionTitle eyebrow="What we stand for" title="Our Resort Values" />
+          <div className="grid gap-6 md:grid-cols-3">
+            {VALUES.map((v) => {
+              const Icon = VALUE_ICONS[v.icon as keyof typeof VALUE_ICONS] ?? Medal;
+              return (
+                <div key={v.title} className="rounded-md border border-gold/40 bg-card p-8 text-center shadow-gold">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-gold/50 bg-gold/10">
+                    <Icon className="h-8 w-8 text-primary" />
+                  </div>
+                  <h3 className="mt-6 text-3xl text-primary">{v.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{v.desc}</p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
