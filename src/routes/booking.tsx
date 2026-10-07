@@ -20,7 +20,7 @@ const schema = z.object({
 }).refine((d) => d.check_out > d.check_in, { message: "Check-out must be after check-in", path: ["check_out"] });
 
 export const Route = createFileRoute("/booking")({
-  validateSearch: (s: Record<string, unknown>) => ({ room: typeof s.room === "string" ? s.room : undefined }),
+  validateSearch: (s: Record<string, unknown>): { room?: string } => (typeof s.room === "string" ? { room: s.room } : {}),
   head: () => ({
     meta: [
       { title: "Book Your Stay — The Floresta Gir" },
