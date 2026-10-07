@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X, Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { SITE, whatsappLink } from "@/lib/site";
+import logoAsset from "@/assets/floresta-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -16,9 +17,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-gold/30 bg-maroon text-maroon-foreground">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
-        <Link to="/" className="flex flex-col leading-none">
-          <span className="font-display text-2xl font-semibold text-gold-gradient">The Floresta</span>
-          <span className="eyebrow mt-1 text-[0.6rem]">Gir · Resort</span>
+        <Link to="/" className="flex items-center gap-3">
+          <img src={logoAsset.url} alt="The Floresta Gir logo" className="h-12 w-auto" />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-2xl font-semibold text-gold-gradient">The Floresta</span>
+            <span className="eyebrow mt-1 text-[0.6rem]">Gir · Resort</span>
+          </span>
         </Link>
         <nav className="hidden items-center gap-8 md:flex">
           {NAV.map((n) => (
