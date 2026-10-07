@@ -20,7 +20,7 @@ const schema = z.object({
 }).refine((d) => d.check_out > d.check_in, { message: "Check-out must be after check-in", path: ["check_out"] });
 
 export const Route = createFileRoute("/booking")({
-  validateSearch: (s: Record<string, unknown>): { room?: string } => (typeof s.room === "string" ? { room: s.room } : {}),
+  validateSearch: (s: Record<string, unknown>): { room?: string } => (typeof s["room"] === "string" ? { room: s["room"] } : {}),
   head: () => ({
     meta: [
       { title: "Book Your Stay — The Floresta Gir" },
@@ -43,14 +43,14 @@ function Booking() {
     e.preventDefault();
     const raw = Object.fromEntries(new FormData(e.currentTarget));
     const parsed = schema.safeParse(raw);
-    if (!parsed.success) return toast.error(parsed.error.issues[0].message);
+    if (!parsed.success) { toast.error(parsed.error.issues[0]?.message ?? "Invalid input"); return; }
     const d = parsed.data;
     setLoading(true);
     const { error } = await supabase.from("booking_requests").insert({
       ...d, email: d.email || null, message: d.message || null,
     });
     setLoading(false);
-    if (error) return toast.error("Could not send request. Please try WhatsApp.");
+    if (error) { toast.error("Could not send request. Please try WhatsApp."); return; }
     setDone(true);
     const text = `New Booking Request – The Floresta Gir\nName: ${d.name}\nPhone: ${d.phone}\nRoom: ${d.room_type}\nCheck-in: ${d.check_in}\nCheck-out: ${d.check_out}\nGuests: ${d.adults} adults, ${d.children} children${d.message ? `\nNote: ${d.message}` : ""}`;
     window.open(whatsappLink(text), "_blank");
@@ -92,7 +92,7 @@ function Booking() {
               <input name="name" placeholder="Full name *" className={field} maxLength={100} />
               <input name="phone" placeholder="Phone / WhatsApp *" className={field} maxLength={20} />
               <input name="email" type="email" placeholder="Email" className={`${field} sm:col-span-2`} maxLength={255} />
-              <select name="room_type" defaultValue={preset ?? ROOMS[0].name} className={`${field} sm:col-span-2`}>
+              <select name="room_type" defaultValue={preset ?? ROOMS[0]?.name} className={`${field} sm:col-span-2`}>
                 {ROOMS.map((r) => <option key={r.name}>{r.name}</option>)}
               </select>
               <label className="text-sm">Check-in<input name="check_in" type="date" className={`${field} mt-1`} /></label>

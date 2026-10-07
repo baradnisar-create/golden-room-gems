@@ -43,13 +43,13 @@ function Admin() {
 
   async function setStatus(id: string, status: string) {
     const { error } = await supabase.from("booking_requests").update({ status }).eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     qc.invalidateQueries({ queryKey: ["bookings"] });
   }
   async function remove(id: string) {
     if (!confirm("Delete this booking?")) return;
     const { error } = await supabase.from("booking_requests").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     qc.invalidateQueries({ queryKey: ["bookings"] });
   }
   async function signOut() {
