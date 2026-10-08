@@ -104,7 +104,7 @@ function RootComponent() {
       {isAdmin ? <AdminHeader /> : <Header />}
       <main className={isAdmin ? "min-h-[75vh] bg-secondary" : undefined}><Outlet /></main>
       {isAdmin ? <AdminFooter /> : <Footer />}
-      {!isAdmin && <WhatsAppFloat />}
+      {!isAdmin && <><WhatsAppFloat /><GuestAssistant /></>}
       <Toaster />
     </QueryClientProvider>
   );
