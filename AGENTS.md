@@ -15,3 +15,4 @@
 - Booking requests are inserted from the browser into `booking_requests` (anon insert-only RLS); only admins (via `has_role`) can read/update/delete.
 - First account to sign up becomes admin via DB trigger; roles live in `user_roles`, never on profiles.
 - Admin panel lives under `src/routes/_authenticated/` (client-only gate).
+- Guest AI assistant: streaming server route src/routes/api/chat.ts; knowledge built from src/lib/site.ts so answers stay in sync with site content.
