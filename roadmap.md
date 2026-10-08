@@ -1,4 +1,4 @@
 # Roadmap
-- [ ] Welcome figure image on left of "Our Resort Values"
-- [ ] Admin panel: proper layout with header/footer
-- [ ] AI guest Q&A assistant (needs chat shape/storage answers)
+- [x] Welcome figure image on left of "Our Resort Values"
+- [x] Admin panel: own header/footer
+- [ ] AI guest Q&A assistant (waiting on chat shape/storage answers)
