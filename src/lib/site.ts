@@ -1,8 +1,8 @@
 export const SITE = {
   name: "The Floresta Gir",
   address: "At. Bhojde (Gir), Ta. Talala, Dist. Gir Somnath, Gujarat",
-  phone: "+91 70435 07049",
-  phoneRaw: "917043507049",
+  phone: "+91 75672 03292",
+  phoneRaw: "917567203292",
   email: "info@thefloresta.com",
 };
 
