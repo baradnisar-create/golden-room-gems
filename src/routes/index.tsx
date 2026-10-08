@@ -3,6 +3,7 @@ import hero from "@/assets/hero.jpg";
 import room from "@/assets/room.jpg";
 import safari from "@/assets/safari.jpg";
 import pool from "@/assets/pool.jpg";
+import welcomeHost from "@/assets/welcome-host.png.asset.json";
 import { Medal, Eye, Trophy } from "lucide-react";
 import { ROOMS, VALUES, whatsappLink } from "@/lib/site";
 import { SectionTitle } from "@/components/site/SiteChrome";
@@ -57,6 +58,8 @@ function Index() {
       <section className="border-y border-gold/30 py-24">
         <div className="mx-auto max-w-7xl px-5">
           <SectionTitle eyebrow="What we stand for" title="Our Resort Values" />
+          <div className="grid items-center gap-10 lg:grid-cols-[260px_1fr]">
+          <img src={welcomeHost.url} alt="Floresta host welcoming guests with folded hands" loading="lazy" className="mx-auto h-80 w-auto lg:h-[26rem]" />
           <div className="grid gap-6 md:grid-cols-3">
             {VALUES.map((v) => {
               const Icon = VALUE_ICONS[v.icon as keyof typeof VALUE_ICONS] ?? Medal;
@@ -70,6 +73,7 @@ function Index() {
                 </div>
               );
             })}
+          </div>
           </div>
         </div>
       </section>

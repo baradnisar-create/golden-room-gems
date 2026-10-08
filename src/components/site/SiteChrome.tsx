@@ -74,6 +74,34 @@ export function Footer() {
   );
 }
 
+export function AdminHeader() {
+  return (
+    <header className="sticky top-0 z-40 border-b border-gold/30 bg-maroon text-maroon-foreground">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3">
+        <Link to="/admin" className="flex items-center gap-3">
+          <img src={logoAsset.url} alt="The Floresta Gir logo" className="h-10 w-auto" />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-xl font-semibold text-gold-gradient">The Floresta</span>
+            <span className="eyebrow mt-1 text-[0.6rem]">Admin Panel</span>
+          </span>
+        </Link>
+        <nav className="flex items-center gap-6 text-sm">
+          <Link to="/admin" className="hover:text-gold" activeProps={{ className: "text-gold" }}>Bookings</Link>
+          <Link to="/" className="rounded-sm border border-gold px-4 py-1.5 text-gold hover:bg-gold/10">View website</Link>
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+export function AdminFooter() {
+  return (
+    <footer className="border-t border-gold/30 bg-maroon py-5 text-center text-xs text-maroon-foreground opacity-90">
+      © {new Date().getFullYear()} The Floresta Gir · Admin Panel · {SITE.phone}
+    </footer>
+  );
+}
+
 export function WhatsAppFloat() {
   return (
     <a href={whatsappLink()} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp"
