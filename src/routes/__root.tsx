@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
   type ErrorComponentProps,
@@ -12,7 +13,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { Header, Footer, WhatsAppFloat } from "@/components/site/SiteChrome";
+import { Header, Footer, WhatsAppFloat, AdminHeader, AdminFooter } from "@/components/site/SiteChrome";
 import { Toaster } from "@/components/ui/sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -95,12 +96,14 @@ function RootComponent() {
     return () => data.subscription.unsubscribe();
   }, [router, queryClient]);
 
+  const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
+
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      <main><Outlet /></main>
-      <Footer />
-      <WhatsAppFloat />
+      {isAdmin ? <AdminHeader /> : <Header />}
+      <main className={isAdmin ? "min-h-[75vh] bg-secondary" : undefined}><Outlet /></main>
+      {isAdmin ? <AdminFooter /> : <Footer />}
+      {!isAdmin && <WhatsAppFloat />}
       <Toaster />
     </QueryClientProvider>
   );
